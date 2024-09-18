@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice #1024</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
+</head>
+
+<body>
+
+    <div class="invoice-container">
+        <header>
+            <h1>INVOICE</h1>
+            <span>#1024</span>
+        </header>
+
+        <section class="billing-info">
+            <div class="billed-to">
+                <p><strong>BILLED TO:</strong></p>
+                <p>Really Great Company</p>
+            </div>
+
+            <div class="pay-to">
+                <p><strong>PAY TO:</strong></p>
+                <p>Avery Davis</p>
+                <p>123 Anywhere St., Any City</p>
+                <p>123-456-7890</p>
+                <p><strong>Bank</strong></p>
+                <p>Really Great Bank</p>
+                <p><strong>Account Name</strong></p>
+                <p>John Smith</p>
+                <p><strong>BSB</strong></p>
+                <p>000-000</p>
+                <p><strong>Account Number</strong></p>
+                <p>0000 0000</p>
+            </div>
+        </section>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Rate</th>
+                    <th>Hours</th>
+                    <th>Amount</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="invoice-body">
+                <!-- Items will be added dynamically here -->
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            <p>Sub-Total: $<span id="sub-total">0.00</span></p>
+            <p>Discount: $<span id="discount">0.00</span></p>
+            <h2>Total: $<span id="total">0.00</span></h2>
+        </div>
+
+
+        <footer>
+            <p>Payment is required within 14 business days of invoice date. Please send remittance to
+                hello@reallygreatsite.com.</p>
+            <p>Thank you for your business.</p>
+        </footer>
+    </div>
+    <div class="controls">
+        <button id="add-item-btn">Add Service</button>
+    </div>  
+    <button id="downloadPdf">Download as PDF</button>
+    <script src="./script.js"></script>
+</body>
+
+</html>
