@@ -3,50 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invoice #1024</title>
+    <title>Invoice Generator</title>
     <link rel="stylesheet" href="./style.css" />
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
+    <link rel="stylesheet" type="text/css" media="print" href="./print.css" />
   </head>
 
   <body>
     <div class="invoice-container">
       <header>
         <h1>INVOICE</h1>
-        <span>#1024</span>
+        <p>
+          #
+          <span
+            contenteditable="true"
+            placeholder="Invoice Number"
+            class="content-editable"
+            >001</span
+          >
+        </p>
       </header>
 
       <section class="billing-info">
         <div class="billing-info-item">
           <div class="billed-to">
             <p><strong>BILLED TO:</strong></p>
-            <p contenteditable="true" placeholder="Client Name">
-              Really Great Company
-            </p>
-            <p contenteditable="true" placeholder="Client Address"></p>
-            <p contenteditable="true" placeholder="Client Contact"></p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Client Name"
+            ></p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Client Address"
+            ></p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Client Contact"
+            ></p>
           </div>
           <div>
-            <p>Date: <input type="date" id="invoice-date" /></p>
-            <p>Total Due: ₹<span id="total-due">0.00</span></p>
+            <p class="billing-info-item">
+              Date: <input type="date" id="invoice-date" />
+            </p>
+            <p class="billing-info-item billing-info-item-total-due">
+              Total Due: ₹<span id="total-due">0.00</span>
+            </p>
           </div>
         </div>
         <div class="billing-info-item">
           <div class="pay-to">
             <p><strong>PAY TO:</strong></p>
-            <p contenteditable="true" placeholder="Your Name">Avery Davis</p>
-            <p contenteditable="true" placeholder="Your Address">
-              123 Anywhere St., Any City
-            </p>
-            <p contenteditable="true" placeholder="Your Phone">123-456-7890</p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Your Name"
+            ></p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Your Address"
+            ></p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Your Phone"
+            ></p>
             <p><strong>Bank</strong></p>
-            <p contenteditable="true" placeholder="Bank Name">Indian Bank</p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Bank Name"
+            ></p>
             <p><strong>Account Name</strong></p>
-            <p contenteditable="true" placeholder="Account Name">John Smith</p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Account Name"
+            ></p>
             <p><strong>Account Number</strong></p>
-            <p contenteditable="true" placeholder="Account Number">0000 0000</p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="Account Number"
+            ></p>
             <p><strong>IFSC CODE</strong></p>
-            <p contenteditable="true" placeholder="IFSC Code">000-000</p>
+            <p
+              contenteditable="true"
+              class="content-editable"
+              placeholder="IFSC Code"
+            ></p>
           </div>
         </div>
       </section>
@@ -61,9 +108,7 @@
             <th></th>
           </tr>
         </thead>
-        <tbody id="invoice-body">
-          <!-- Items will be added dynamically here -->
-        </tbody>
+        <tbody id="invoice-body"></tbody>
       </table>
 
       <div class="total-section">
@@ -81,16 +126,17 @@
       </div>
 
       <footer>
-        <p contenteditable="true">
-          Payment is required within 14 business days of invoice date. Please
-          send remittance to hello@reallygreatsite.com.
+        <p contenteditable="true" class="content-editable">
+          Payment is required within 14 business days of invoice date.
         </p>
-        <p contenteditable="true">Thank you for your business.</p>
+        <p contenteditable="true" class="content-editable">
+          Thank you for your business.
+        </p>
       </footer>
     </div>
     <div class="controls">
       <button id="add-item-btn">Add Service</button>
-      <button id="downloadPdf">Download as PDF</button>
+      <button id="downloadPdf" onclick="window.print()">Download as PDF</button>
     </div>
     <script src="./script.js"></script>
   </body>

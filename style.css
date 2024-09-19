@@ -3,22 +3,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
+  align-items: center;
+  margin: 0 20%;
 }
 
 .invoice-container {
+  color: #343434;
   max-width: 600px;
-  margin: 20px auto;
   padding: 20px;
   border: 1px solid #ddd;
   width: 210mm;
-  margin: 0 auto;
+  margin: 20px auto;
   background: white;
   box-sizing: border-box;
   font-size: 12px;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -33,13 +35,26 @@ header {
   justify-content: space-between;
   margin-top: 5px;
 }
-
+.billing-info-item {
+  margin: 20px 0px;
+}
+.billing-info-item-total-due {
+  font-size: 1.8em;
+}
 .invoice-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
-
+strong {
+  color: #505050;
+}
+.content-editable {
+  border: 1px solid rgba(80, 80, 80, 0.5); /* 50% opacity */
+  margin: 5px 0px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
 .invoice-table th,
 .invoice-table td {
   border: 1px solid #ddd;
@@ -58,16 +73,30 @@ header {
   padding-top: 10px;
   margin-top: 10mm;
 }
+input[type="number"] {
+  --moz-appearance: textfield;
+}
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 footer {
   margin-top: 40px;
   text-align: center;
   font-size: 0.85em;
 }
-
+.delete-item-btn {
+  padding: 2px;
+}
 .controls {
   display: flex;
   flex-direction: column;
+}
+.controls button {
+  margin: 10px 0;
+  padding: 10px 20px;
 }
 #discount-input {
   width: 80px;
@@ -78,11 +107,15 @@ footer {
 }
 
 /* New styles for editable fields */
-[contenteditable="true"],
+/* [contenteditable="true"],
 input[type="date"],
 #discount-input {
   position: relative;
   transition: background-color 0.3s ease;
+} */
+
+input[type="date"] {
+  border: none;
 }
 
 [contenteditable="true"]:hover,
@@ -94,11 +127,6 @@ input[type="date"]:hover,
 [contenteditable="true"]:hover::after,
 input[type="date"]:hover::after,
 #discount-input:hover::after {
-  content: "\270E"; /* Unicode for a pencil icon */
-  position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
   font-size: 14px;
   color: #888;
 }

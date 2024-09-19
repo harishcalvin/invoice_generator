@@ -3,9 +3,6 @@ document.getElementById("add-item-btn").addEventListener("click", addItem);
 function addItem() {
   const tbody = document.getElementById("invoice-body");
   const tr = document.createElement("tr");
-  /*
-     delete button show only on hover and Delete the item
-    */
   tr.innerHTML = `
     <td contenteditable="true">New Service</td>
     <td contenteditable="true" class="rate">0</td>
@@ -56,64 +53,51 @@ function calculateTotal() {
   updateTotalDue();
 }
 
-document
-  .getElementById("discount-input")
-  .addEventListener("input", calculateTotal);
-addItem();
+function finalInvoice() {
+  document
+    .getElementById("discount-input")
+    .addEventListener("input", calculateTotal);
+  addItem();
+}
+finalInvoice();
+function handlePrint() {
+  // clone invoice container
+  const invoiceClone = document
+    .querySelector(".invoice-container")
+    .cloneNode(true);
 
-document.getElementById("downloadPdf").addEventListener("click", function () {
-  var element = document.querySelector(".invoice-container");
+  // content-editable elements
+  invoiceClone.querySelectorAll(".content-editable").forEach((element) => {
+    if (element.textContent.trim() === "") {
+      element.classList.add("empty-content");
+    }
+  });
 
-  // Store original styles and content
-  const originalStyle = element.style.cssText;
-  const originalContent = element.innerHTML;
-
-  // Adjust the container size and styles for PDF
-  element.style.width = "210mm";
-  element.style.height = "297mm";
-  element.style.padding = "10mm";
-  element.style.fontSize = "10px";
-
-  // Hide empty editable fields and their placeholders
-  const editableFields = element.querySelectorAll(
-    '[contenteditable="true"], input[type="date"], #discount-input'
-  );
-  editableFields.forEach((field) => {
-    if (field.tagName === "INPUT") {
-      if (!field.value.trim()) {
-        field.style.display = "none";
-      }
+  //  input elements
+  invoiceClone.querySelectorAll("input").forEach((input) => {
+    if (input.value.trim() === "") {
+      input.classList.add("empty-content");
     } else {
-      if (!field.innerText.trim()) {
-        field.style.display = "none";
-      }
+      const span = document.createElement("span");
+      span.textContent = input.value;
+      input.parentNode.replaceChild(span, input);
     }
   });
 
-  // Hide the last column (delete button column)
-  const tableRows = document.querySelectorAll(".invoice-table tr");
-  tableRows.forEach((row) => {
-    const cells = row.cells;
-    if (cells.length > 0) {
-      cells[cells.length - 1].style.display = "none";
-    }
-  });
+  // new window for printing
+  const printWindow = window.open("", "_blank");
+  printWindow.document.write("<html><head><title>Invoice</title>");
+  printWindow.document.write(
+    '<link rel="stylesheet" type="text/css" href="./styles.css">'
+  );
+  printWindow.document.write(
+    '<link rel="stylesheet" type="text/css" href="./print.css">'
+  );
+  printWindow.document.write("</head><body>");
+  printWindow.document.write(invoiceClone.outerHTML);
+  printWindow.document.write("</body></html>");
+  printWindow.document.close();
 
-  var opt = {
-    margin: 0,
-    filename: "invoice.pdf",
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 1, logging: true, dpi: 300, letterRendering: true },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-  };
-
-  html2pdf()
-    .set(opt)
-    .from(element)
-    .save()
-    .then(function () {
-      // Restore original content and styles
-      element.innerHTML = originalContent;
-      element.style.cssText = originalStyle;
-    });
-});
+  // Print
+  printWindow.print();
+}

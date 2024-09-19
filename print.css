@@ -1,0 +1,22 @@
+@media print {
+  .invoice-table th:last-child,
+  .invoice-table td:last-child {
+    display: none;
+  }
+
+  .content-editable {
+    border: none;
+    padding: 5px 0px;
+  }
+  .empty-content {
+    display: none !important;
+  }
+
+  .content-editable:empty {
+    display: none !important;
+  }
+
+  .controls {
+    display: none !important;
+  }
+}
