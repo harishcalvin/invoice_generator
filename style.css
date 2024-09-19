@@ -1,5 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: Arial, sans-serif;
+  display: flex;
 }
 
 .invoice-container {
@@ -7,6 +13,13 @@ body {
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ddd;
+  width: 210mm;
+  margin: 0 auto;
+  background: white;
+  box-sizing: border-box;
+  font-size: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 header {
@@ -18,7 +31,7 @@ header {
 .billing-info {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .invoice-table {
@@ -32,6 +45,7 @@ header {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+  padding: 2mm;
 }
 
 .total-section {
@@ -42,10 +56,62 @@ header {
 .total-section h2 {
   border-top: 1px solid #ddd;
   padding-top: 10px;
+  margin-top: 10mm;
 }
 
 footer {
   margin-top: 40px;
   text-align: center;
   font-size: 0.85em;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+#discount-input {
+  width: 80px;
+  text-align: right;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  font-size: 1em;
+}
+
+/* New styles for editable fields */
+[contenteditable="true"],
+input[type="date"],
+#discount-input {
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+[contenteditable="true"]:hover,
+input[type="date"]:hover,
+#discount-input:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[contenteditable="true"]:hover::after,
+input[type="date"]:hover::after,
+#discount-input:hover::after {
+  content: "\270E"; /* Unicode for a pencil icon */
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #888;
+}
+
+[contenteditable="true"]:focus,
+input[type="date"]:focus,
+#discount-input:focus {
+  outline: 1px solid #ddd;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+[contenteditable="true"]:empty:before {
+  content: attr(placeholder);
+  color: #888;
+  font-style: italic;
 }
