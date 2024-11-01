@@ -2,7 +2,7 @@
 
 ![App screenshot](preview.png)
 
-A simple, user-friendly invoice generator built with **HTML**, **CSS**, and **JavaScript**. This app allows to create customized invoices and print them out.
+A simple, user-friendly invoice generator built with **HTML**, **CSS**, and **JavaScript**. This app allows creation of customized invoices and print them out.
 
 ## Contributing
 
